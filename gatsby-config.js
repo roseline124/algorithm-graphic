@@ -5,6 +5,10 @@
  */
 
 module.exports = {
-  /* Your site config here */
-  plugins: [],
+  siteMetadata: {
+    title: "Algorithm Visualizer",
+    description: `don't think, see algorithm`,
+    author: "@roseline124",
+  },
+  plugins: ["gatsby-plugin-typescript"],
 }
