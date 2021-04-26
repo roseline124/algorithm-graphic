@@ -1,3 +1,5 @@
+const path = require("path")
+
 /**
  * Configure your Gatsby site with this file.
  *
@@ -10,5 +12,16 @@ module.exports = {
     description: `don't think, see algorithm`,
     author: "@roseline124",
   },
-  plugins: [`gatsby-plugin-typescript`, `gatsby-plugin-emotion`],
+  plugins: [
+    `gatsby-plugin-typescript`,
+    `gatsby-plugin-emotion`,
+    {
+      resolve: "gatsby-plugin-root-import",
+      options: {
+        components: path.join(__dirname, "src/components"),
+        src: path.join(__dirname, "src"),
+        pages: path.join(__dirname, "src/pages"),
+      },
+    },
+  ],
 }
