@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "react-jsx",
     "target": "es5",
     "module": "commonjs",
     "allowJs": true,
@@ -10,9 +11,13 @@
     "paths": {
       "*": ["node_modules/*", "src/*"]
     },
+    "isolatedModules": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "typeRoots": ["@types", "./node_modules/@types"],
+    "jsxImportSource": "@emotion/react"
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

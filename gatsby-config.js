@@ -10,5 +10,5 @@ module.exports = {
     description: `don't think, see algorithm`,
     author: "@roseline124",
   },
-  plugins: ["gatsby-plugin-typescript"],
+  plugins: [`gatsby-plugin-typescript`, `gatsby-plugin-emotion`],
 }

@@ -14,13 +14,19 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "autoprefixer": "^10.2.5",
     "gatsby": "^3.3.1",
     "gatsby-plugin-typescript": "^3.3.0",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "tailwindcss": "^2.1.2"
   },
   "devDependencies": {
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.3.0",
+    "gatsby-plugin-emotion": "^6.3.0",
     "prettier": "2.2.1",
+    "twin.macro": "^2.4.0",
     "typescript": "^4.2.4"
   },
   "repository": {
@@ -29,5 +35,10 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
-  }
+  },
+  "babelMacros": {
+    "twin": {
+      "preset": "emotion"
+    }
+  }  
 }
