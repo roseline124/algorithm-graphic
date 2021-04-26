@@ -2,6 +2,13 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    size: {
+      24: "24px",
+      56: "56px",
+      100: "100px",
+    },
+    width: theme => theme("size"),
+    height: theme => theme("size"),
     // https://tailwindcss.com/docs/customizing-spacing
     spacing: {
       sm: "8px",
