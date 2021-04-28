@@ -12,5 +12,7 @@ module.exports = {
     __PATH_PREFIX__: ``,
   },
   testURL: `http://localhost`,
-  setupFiles: [`<rootDir>/loadershim.js`],
+  setupFiles: [`<rootDir>/src/testUtils/loadershim.js`],
+  setupFilesAfterEnv: ['<rootDir>/src/testUtils/jest-extended.ts'],
+  moduleFileExtensions: ['js', 'ts', 'tsx'],
 }
