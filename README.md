@@ -1,8 +1,9 @@
 # Algorithm Graphic
 
-## gatsby run
+## scripts
 
 - `yarn dev`: if you suffer from infinite refresh loop, unregister service worker and reloading. ([releated issue](https://github.com/gatsbyjs/gatsby/issues/10074))
+- `yarn test`: do test
 
 ## gatsby
 
@@ -27,7 +28,7 @@ reference: https://corte.si/posts/code/visualisingsorting/index.html
 
 ## TODO
 
-- [ ] add router
 - [x] add tailwind emotion
+- [x] add unit test environment https://www.gatsbyjs.com/docs/how-to/testing/unit-testing/
+- [ ] add router
 - [ ] use page layout with `gatsby-plugin-layout`
-- [ ] add unit test environment https://www.gatsbyjs.com/docs/how-to/testing/unit-testing/
