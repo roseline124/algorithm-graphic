@@ -29,9 +29,6 @@ const testCases: GraphTestCase[] = [
 describe('BFS', () => {
   it.each(testCases)("%s", ({ edges, answer, rootNode }) => {
     const visited = bfs({ edges, rootNode })
-    expect(visited).toEqual(expect.arrayContaining(answer));
-  })
-  it.only('error with different order', () => {
-    expect(2).toBeGreaterThan(1)
+    expect(visited).arrayEqualWithOrder(answer)
   })
 })

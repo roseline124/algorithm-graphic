@@ -17,6 +17,7 @@
     "autoprefixer": "^10.2.5",
     "gatsby": "^3.3.1",
     "gatsby-plugin-typescript": "^3.3.0",
+    "lodash": "^4.17.21",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "tailwindcss": "^2.1.2"
@@ -26,6 +27,7 @@
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.3.0",
     "@types/jest": "^26.0.23",
+    "@types/lodash": "^4.14.168",
     "babel-jest": "^26.6.3",
     "babel-preset-gatsby": "^1.4.0",
     "gatsby-plugin-emotion": "^6.3.0",

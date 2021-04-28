@@ -1,10 +1,16 @@
 require('jest-extended')
+import zip from 'lodash/zip';
 
 expect.extend({
-  arrayEqualWithOrder(received, expected) {
+  arrayEqualWithOrder(received: any[], expected: any[]) {
+    const pairs = zip(received, expected)
+    const isEqual = pairs.every(pair => this.equals(pair[0], pair[1]))
     return {
-      pass: true,
-      message: () => `received:${received} \n expected:${expected}`,
+      pass: isEqual,
+      message: () => (
+        'received: ' + this.utils.printReceived(received) + '\n'
+        + 'expected: ' + this.utils.printExpected(expected)
+      ),
     };
   },
 });
