@@ -1,0 +1,14 @@
+// https://www.gatsbyjs.com/docs/how-to/custom-configuration/babel/
+{
+  "presets": [
+    [
+      "babel-preset-gatsby",
+      {
+        "targets": {
+          "browsers": [">0.25%", "not dead"]
+        }
+      }
+    ],
+    ["@babel/preset-typescript"]
+  ]
+}

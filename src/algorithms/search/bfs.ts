@@ -1,5 +1,7 @@
+export type Edge = FixedLengthArray<[any, any]>
+
 interface GraphSearchArgs {
-  edges: FixedLengthArray<[any, any]>[]
+  edges: Edge[]
   rootNode: any
 }
 
