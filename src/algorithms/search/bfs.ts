@@ -3,10 +3,9 @@ export type Edge = FixedLengthArray<[any, any]>
 interface GraphSearchArgs {
   edges: Edge[]
   rootNode: any
+  visited?: any[]
+  queue?: any[]
 }
-
-const visited: any[] = []
-const queue: any[] = []
 
 /**
  * BFS: Breadth First Search(너비 우선 탐색)
@@ -17,7 +16,7 @@ const queue: any[] = []
  * 4. 현재 노드에 인접한 노드를 모두 방문했으면 큐에서 다음 노드를 제거해 현재 노드로 만듦
  * 5. 현재 노드에 인접한 노드를 모두 방문하고 큐에 더 이상 노드가 없으면 종료
  */
-const bfs = ({ edges, rootNode }: GraphSearchArgs) => {
+const bfs = ({ edges, rootNode, visited = [], queue = [] }: GraphSearchArgs) => {
   if (!visited.includes(rootNode)) visited.push(rootNode)
   const connectedNodes = edges.filter(edge => edge[0] === rootNode || edge[1] === rootNode)
     .map(edge => edge[0] === rootNode ? edge[1] : edge[0])
@@ -28,10 +27,9 @@ const bfs = ({ edges, rootNode }: GraphSearchArgs) => {
     queue.push(node)
   }
 
-  const currentNode = queue.splice(0, 1)
+  const currentNode = queue.splice(0, 1)[0]
   if (!queue.length) return visited
-
-  bfs({ edges, rootNode: currentNode })
+  bfs({ edges, rootNode: currentNode, visited, queue })
 }
 
 export default bfs
