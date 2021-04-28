@@ -13,8 +13,21 @@
 - install [gatsby & tailwind & emotion](https://github.com/ben-rogerson/twin.examples/tree/master/gatsby-emotion)
   - utility-first css class naming: `.{property}{side}-{size}`
 
+## check list for animated algorithm visualization
+
+reference: https://corte.si/posts/code/visualisingsorting/index.html
+
+- After what percentage of time is half of the array sorted?
+- Can you find an element that moved about half the length of the array to reach its final destination?
+- What percentage of the array was sorted after 80% of the sorting process? How about 20%?
+- Does the number of sorted elements grow linearly or non-linearly with time (i.e. logarithmically or exponentially)?
+
+- [ ] show how long it took to sort
+- [ ] show sort process
+
 ## TODO
 
 - [ ] add router
-- [ ] styling with tailwind css
+- [x] add tailwind emotion
 - [ ] use page layout with `gatsby-plugin-layout`
+- [ ] add unit test environment https://www.gatsbyjs.com/docs/how-to/testing/unit-testing/
