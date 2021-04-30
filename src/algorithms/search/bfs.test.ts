@@ -30,4 +30,10 @@ describe('BFS', () => {
     const visited = bfs({ edges, rootNode })
     expect(visited).arrayEqualWithOrder(answer)
   })
+
+  it('if no edges, return root node', () => {
+    const rootNode = 1, edges = [], answer = [1]
+    const visited = bfs({ edges, rootNode })
+    expect(visited).arrayEqualWithOrder(answer)
+  })
 })
