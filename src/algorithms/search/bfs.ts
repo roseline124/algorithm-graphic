@@ -28,8 +28,9 @@ const bfs = ({ edges, rootNode, visited = [], queue = [] }: GraphSearchArgs) => 
   }
 
   const currentNode = queue.splice(0, 1)[0]
-  if (!queue.length) return visited
-  bfs({ edges, rootNode: currentNode, visited, queue })
+  if (!queue.length) return visited || []
+
+  return bfs({ edges, rootNode: currentNode, visited, queue })
 }
 
 export default bfs

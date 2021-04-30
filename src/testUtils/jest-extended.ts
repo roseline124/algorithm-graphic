@@ -1,4 +1,3 @@
-require('jest-extended')
 import zip from 'lodash/zip';
 
 expect.extend({
