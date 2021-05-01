@@ -32,3 +32,7 @@ reference: https://corte.si/posts/code/visualisingsorting/index.html
 - [x] add unit test environment https://www.gatsbyjs.com/docs/how-to/testing/unit-testing/
 - [ ] add router
 - [ ] use page layout with `gatsby-plugin-layout`
+
+## sample
+
+![psick univ relationship graph](assets/psick-graph.mov)
