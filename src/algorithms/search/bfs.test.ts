@@ -36,4 +36,6 @@ describe('BFS', () => {
     const visited = bfs({ edges, rootNode })
     expect(visited).arrayEqualWithOrder(answer)
   })
+
+  // if more 1000 edges ?
 })
