@@ -7,9 +7,11 @@ import edgesData from 'data/edges.json'
 const BFS: FC = () => {
   // @ts-ignore
   const edges: Edge[] = edgesData.edges
+  const rootNode: GraphNode = edgesData.rootNode
+
   return (
     <div>
-      <Graph rootNode={{ value: 1000 }} edges={edges} />
+      <Graph rootNode={rootNode} edges={edges} />
     </div>
   )
 }

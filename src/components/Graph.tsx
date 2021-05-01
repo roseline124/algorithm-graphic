@@ -19,6 +19,16 @@ const lineStyle = css`
   }
 `
 
+const circleStyle = css`
+  circle {
+    stroke: #8f00ff;
+  }
+
+  text {
+    font-size: 12px;
+  }
+`
+
 const Graph: FC<GraphProps> = ({ rootNode, edges }) => {
   const width = window.innerWidth
   const height = window.innerHeight
@@ -52,15 +62,16 @@ const Graph: FC<GraphProps> = ({ rootNode, edges }) => {
       .merge(u)
       .attr('cx', d => d.x)
       .attr('cy', d => d.y)
-      .attr('r', 5)
-      .attr('fill', '#69a3b2')
+      .attr('r', 30)
+      .attr('fill', 'white')
+      .attr('stroke', 'red')
 
     u = nodeGroup.selectAll('text').data(nodes)
     u.enter()
       .append('text')
       .text(d => d.value)
       .merge(u)
-      .attr('x', d => d.x)
+      .attr('x', d => d.x - 15)
       .attr('y', d => d.y)
       .attr('dy', _ => 5)
 
@@ -92,7 +103,7 @@ const Graph: FC<GraphProps> = ({ rootNode, edges }) => {
     <Root>
       <svg width={width} height={height}>
         <g id="links" ref={linkRef} css={lineStyle} />
-        <g id="nodes" ref={nodeRef} />
+        <g id="nodes" ref={nodeRef} css={circleStyle} />
       </svg>
     </Root>
   )
