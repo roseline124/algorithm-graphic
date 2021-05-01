@@ -1,9 +1,7 @@
 import * as d3 from 'd3'
 import { FC, useEffect, useRef, useState } from 'react'
 
-import tw from 'twin.macro'
-import Link from './Link'
-import Node from './Node'
+import tw, { css } from 'twin.macro'
 import { getNodesAndLinksFromEdges } from './utils'
 
 interface GraphProps {
@@ -13,6 +11,12 @@ interface GraphProps {
 
 const Root = tw.div`
   flex items-center justify-center
+`
+
+const lineStyle = css`
+  line {
+    stroke: #ccc;
+  }
 `
 
 const Graph: FC<GraphProps> = ({ rootNode, edges }) => {
@@ -41,8 +45,17 @@ const Graph: FC<GraphProps> = ({ rootNode, edges }) => {
     u.exit().remove()
   }
   const updateNodes = () => {
-    u = nodeGroup.selectAll('text').data(nodes)
+    u = nodeGroup.selectAll('circle').data(nodes)
 
+    u.enter()
+      .append('circle')
+      .merge(u)
+      .attr('cx', d => d.x)
+      .attr('cy', d => d.y)
+      .attr('r', 5)
+      .attr('fill', '#69a3b2')
+
+    u = nodeGroup.selectAll('text').data(nodes)
     u.enter()
       .append('text')
       .text(d => d.value)
@@ -76,10 +89,10 @@ const Graph: FC<GraphProps> = ({ rootNode, edges }) => {
   }, [])
 
   return (
-    <Root tw="p-18">
+    <Root>
       <svg width={width} height={height}>
-        <Link ref={linkRef} />
-        <Node ref={nodeRef} />
+        <g id="links" ref={linkRef} css={lineStyle} />
+        <g id="nodes" ref={nodeRef} />
       </svg>
     </Root>
   )

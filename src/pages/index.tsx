@@ -1,10 +1,8 @@
-import { FC } from "react"
-import "twin.macro"
-
-import Node from "components/Node"
+import { FC } from 'react'
+import 'twin.macro'
 
 const Home: FC = () => {
-  return <Node value={100} />
+  return <div>냥</div>
 }
 
 export default Home
