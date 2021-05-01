@@ -1,8 +1,10 @@
 import * as d3 from 'd3'
-import tw, { css } from 'twin.macro'
 import flatten from 'lodash/flatten'
 import uniqBy from 'lodash/uniqBy'
-import { FC, ReactNode, useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
+import tw from 'twin.macro'
+import Link from './Link'
+import Node from './Node'
 
 const CONTAINER_WIDTH = 400
 const CONTAINER_HEIGHT = 300
@@ -16,12 +18,6 @@ const Root = tw.div`
   flex items-center justify-center
 `
 
-const lineStyle = css`
-  line {
-    stroke: #ccc;
-  }
-`
-
 const Graph: FC<GraphProps> = ({ rootNode, edges }) => {
   const nodes = uniqBy(flatten(edges), 'value')
   const links: d3.GraphLink[] = edges.map(edge => ({
@@ -32,8 +28,8 @@ const Graph: FC<GraphProps> = ({ rootNode, edges }) => {
   const [nodeGroup, setNodeGroup] = useState(null)
   const [linkGroup, setLinkGroup] = useState(null)
 
-  const nodeRef = useRef(null)
-  const linkRef = useRef(null)
+  const nodeRef = useRef<SVGGElement>(null)
+  const linkRef = useRef<SVGGElement>(null)
 
   let u
   const updateLinks = () => {
@@ -42,18 +38,10 @@ const Graph: FC<GraphProps> = ({ rootNode, edges }) => {
     u.enter()
       .append('line')
       .merge(u)
-      .attr('x1', function (d) {
-        return d.source.x
-      })
-      .attr('y1', function (d) {
-        return d.source.y
-      })
-      .attr('x2', function (d) {
-        return d.target.x
-      })
-      .attr('y2', function (d) {
-        return d.target.y
-      })
+      .attr('x1', d => d.source.x)
+      .attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x)
+      .attr('y2', d => d.target.y)
 
     u.exit().remove()
   }
@@ -62,19 +50,11 @@ const Graph: FC<GraphProps> = ({ rootNode, edges }) => {
 
     u.enter()
       .append('text')
-      .text(function (d) {
-        return d.value
-      })
+      .text(d => d.value)
       .merge(u)
-      .attr('x', function (d) {
-        return d.x
-      })
-      .attr('y', function (d) {
-        return d.y
-      })
-      .attr('dy', function (d) {
-        return 5
-      })
+      .attr('x', d => d.x)
+      .attr('y', d => d.y)
+      .attr('dy', d => 5)
 
     u.exit().remove()
   }
@@ -103,8 +83,8 @@ const Graph: FC<GraphProps> = ({ rootNode, edges }) => {
   return (
     <Root tw="p-18">
       <svg width={CONTAINER_WIDTH} height={CONTAINER_HEIGHT}>
-        <g id="links" ref={linkRef} css={lineStyle}></g>
-        <g id="nodes" ref={nodeRef}></g>
+        <Link ref={linkRef} />
+        <Node ref={nodeRef} />
       </svg>
     </Root>
   )

@@ -1,17 +1,12 @@
-import { FC } from 'react'
-import tw from 'twin.macro'
+import { forwardRef } from 'react'
 
 interface NodeProps {
-  value: string | number
+  id?: string
 }
 
-const ContainedCircle = tw.div`
-  rounded-full
-  flex items-center justify-center
-`
-
-const Node: FC<NodeProps> = ({ value }) => {
-  return <ContainedCircle tw="bg-primary h-100 w-100">{value}</ContainedCircle>
-}
+const Node = forwardRef<SVGGElement, NodeProps>((props, ref) => {
+  const { id = 'nodes' } = props
+  return <g id={id} ref={ref}></g>
+})
 
 export default Node
