@@ -22,6 +22,7 @@ module.exports = {
         algorithms: path.join(__dirname, 'src/algorithms'),
         src: path.join(__dirname, 'src'),
         pages: path.join(__dirname, 'src/pages'),
+        data: path.join(__dirname, 'src/data'),
       },
     },
   ],

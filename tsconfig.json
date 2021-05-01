@@ -16,7 +16,8 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "typeRoots": ["@types", "./node_modules/@types"],
-    "jsxImportSource": "@emotion/react"
+    "jsxImportSource": "@emotion/react",
+    "resolveJsonModule": true
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

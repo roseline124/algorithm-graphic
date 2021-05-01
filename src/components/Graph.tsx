@@ -1,13 +1,10 @@
 import * as d3 from 'd3'
-import flatten from 'lodash/flatten'
-import uniqBy from 'lodash/uniqBy'
 import { FC, useEffect, useRef, useState } from 'react'
+
 import tw from 'twin.macro'
 import Link from './Link'
 import Node from './Node'
-
-const CONTAINER_WIDTH = 400
-const CONTAINER_HEIGHT = 300
+import { getNodesAndLinksFromEdges } from './utils'
 
 interface GraphProps {
   rootNode: GraphNode
@@ -19,11 +16,9 @@ const Root = tw.div`
 `
 
 const Graph: FC<GraphProps> = ({ rootNode, edges }) => {
-  const nodes = uniqBy(flatten(edges), 'value')
-  const links: d3.GraphLink[] = edges.map(edge => ({
-    source: nodes.findIndex(node => node.value === edge[0].value),
-    target: nodes.findIndex(node => node.value === edge[1].value),
-  }))
+  const width = window.innerWidth
+  const height = window.innerHeight
+  const { nodes, links } = getNodesAndLinksFromEdges(edges)
 
   const [nodeGroup, setNodeGroup] = useState(null)
   const [linkGroup, setLinkGroup] = useState(null)
@@ -54,7 +49,7 @@ const Graph: FC<GraphProps> = ({ rootNode, edges }) => {
       .merge(u)
       .attr('x', d => d.x)
       .attr('y', d => d.y)
-      .attr('dy', d => 5)
+      .attr('dy', _ => 5)
 
     u.exit().remove()
   }
@@ -68,8 +63,8 @@ const Graph: FC<GraphProps> = ({ rootNode, edges }) => {
 
   const simulation = d3
     .forceSimulation(nodes)
-    .force('charge', d3.forceManyBody().strength(-220))
-    .force('center', d3.forceCenter(CONTAINER_WIDTH / 2, CONTAINER_HEIGHT / 2))
+    .force('charge', d3.forceManyBody().strength(-width))
+    .force('center', d3.forceCenter(width / 2, height / 2))
     .force('link', d3.forceLink().links(links))
     .on('tick', ticked)
 
@@ -82,7 +77,7 @@ const Graph: FC<GraphProps> = ({ rootNode, edges }) => {
 
   return (
     <Root tw="p-18">
-      <svg width={CONTAINER_WIDTH} height={CONTAINER_HEIGHT}>
+      <svg width={width} height={height}>
         <Link ref={linkRef} />
         <Node ref={nodeRef} />
       </svg>
