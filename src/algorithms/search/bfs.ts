@@ -9,13 +9,14 @@ import isEqual from 'lodash/isEqual';
  * 4. 현재 노드에 인접한 노드를 모두 방문했으면 큐에서 다음 노드를 제거해 현재 노드로 만듦
  * 5. 현재 노드에 인접한 노드를 모두 방문하고 큐에 더 이상 노드가 없으면 종료
  */
+
 const bfs = ({ edges, rootNode, visited = [], queue = [] }: GraphSearchInput) => {
-  if (!visited.includes(rootNode)) visited.push(rootNode)
+  if (!visited.find(node => isEqual(node, rootNode))) visited.push(rootNode)
   const connectedNodes = edges.filter(edge => isEqual(edge[0], rootNode) || isEqual(edge[1], rootNode))
     .map(edge => isEqual(edge[0], rootNode) ? edge[1] : edge[0])
 
   for (const node of connectedNodes) {
-    if (visited.includes(node)) continue
+    if (visited.find(visitedNode => isEqual(visitedNode, node))) continue
     visited.push(node)
     queue.push(node)
   }

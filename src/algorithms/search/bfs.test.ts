@@ -1,26 +1,26 @@
-import bfs, { Edge } from './bfs';
+import bfs from './bfs';
 
 interface GraphTestCase {
-  rootNode: any
+  rootNode: GraphNode
   edges: Edge[]
-  answer: any[]
+  answer: GraphNode[]
 }
 
 const testCases: GraphTestCase[] = [
   {
-    rootNode: 1,
-    edges: [[1, 2], [1, 3], [1, 4], [2, 4], [3, 4]],
-    answer: [1, 2, 3, 4]
+    rootNode: { value: 1 },
+    edges: [[{ value: 1 }, { value: 2 }], [{ value: 1 }, { value: 3 }], [{ value: 1 }, { value: 4 }], [{ value: 2 }, { value: 4 }], [{ value: 3 }, { value: 4 }]],
+    answer: [{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }]
   },
   {
-    rootNode: 3,
-    edges: [[5, 4], [5, 2], [1, 2], [3, 4], [3, 1]],
-    answer: [3, 4, 1, 5, 2]
+    rootNode: { value: 3 },
+    edges: [[{ value: 5 }, { value: 4 }], [{ value: 5 }, { value: 2 }], [{ value: 1 }, { value: 2 }], [{ value: 3 }, { value: 4 }], [{ value: 3 }, { value: 1 }]],
+    answer: [{ value: 3 }, { value: 4 }, { value: 1 }, { value: 5 }, { value: 2 }]
   },
   {
-    rootNode: 1000,
-    edges: [[999, 1000]],
-    answer: [1000, 999]
+    rootNode: { value: 1000 },
+    edges: [[{ value: 999 }, { value: 1000 }]],
+    answer: [{ value: 1000 }, { value: 999 }]
   },
 ]
 
@@ -32,7 +32,7 @@ describe('BFS', () => {
   })
 
   it('if no edges, return root node', () => {
-    const rootNode = 1, edges = [], answer = [1]
+    const rootNode = { value: 1 }, edges = [], answer = [rootNode]
     const visited = bfs({ edges, rootNode })
     expect(visited).arrayEqualWithOrder(answer)
   })
