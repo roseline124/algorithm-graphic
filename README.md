@@ -35,4 +35,8 @@ reference: https://corte.si/posts/code/visualisingsorting/index.html
 
 ## sample
 
-![psick univ relationship graph](assets/psick-graph.mov)
+psick univ relationship graph
+
+<video width="400" height="300" controls>
+  <source src="assets/psick-graph.mov" type="video/mp4">
+</video>
