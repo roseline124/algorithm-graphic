@@ -110,14 +110,17 @@ const Graph: FC<GraphProps> = ({ rootNode, edges }) => {
 
   const visited = bfs({ edges, rootNode })
 
+  // TODO: use d3 not setState(it causes re-render)
   useEffect(() => {
     const tick = setTimeout(() => {
       const visitedNode = visited[currentVisitedIndex]
+      if (currentVisitedIndex >= visited.length) return
       setVisitedNodeIndex(
         nodes.findIndex(node => node.value === visitedNode.value) + 1,
       )
       setCurrentVisitedIndex(currentVisitedIndex + 1)
-    }, 5000)
+    }, 1000)
+
     return () => clearTimeout(tick)
   }, [visitedNodeIndex, currentVisitedIndex])
 
