@@ -1,3 +1,4 @@
+import bfs from 'algorithms/search/bfs'
 import * as d3 from 'd3'
 import { FC, useEffect, useRef, useState } from 'react'
 
@@ -19,9 +20,13 @@ const lineStyle = css`
   }
 `
 
-const circleStyle = css`
+const circleStyle = ({ visitedNodeIndex }) => css`
   circle {
     stroke: #8f00ff;
+  }
+
+  circle:nth-of-type(${visitedNodeIndex}) {
+    fill: rgba(143, 0, 255, 0.3);
   }
 
   text {
@@ -36,6 +41,10 @@ const Graph: FC<GraphProps> = ({ rootNode, edges }) => {
 
   const [nodeGroup, setNodeGroup] = useState(null)
   const [linkGroup, setLinkGroup] = useState(null)
+  const [currentVisitedIndex, setCurrentVisitedIndex] = useState(1)
+  const [visitedNodeIndex, setVisitedNodeIndex] = useState(
+    nodes.findIndex(node => node.value === rootNode.value) + 1,
+  )
 
   const nodeRef = useRef<SVGGElement>(null)
   const linkRef = useRef<SVGGElement>(null)
@@ -99,12 +108,27 @@ const Graph: FC<GraphProps> = ({ rootNode, edges }) => {
     simulation.force('link', d3.forceLink().links(links))
   }, [])
 
+  const visited = bfs({ edges, rootNode })
+
+  useEffect(() => {
+    const tick = setTimeout(() => {
+      const visitedNode = visited[currentVisitedIndex]
+      setVisitedNodeIndex(
+        nodes.findIndex(node => node.value === visitedNode.value) + 1,
+      )
+      setCurrentVisitedIndex(currentVisitedIndex + 1)
+    }, 5000)
+    return () => clearTimeout(tick)
+  }, [visitedNodeIndex, currentVisitedIndex])
+
   return (
     <Root>
-      <svg width={width} height={height}>
-        <g id="links" ref={linkRef} css={lineStyle} />
-        <g id="nodes" ref={nodeRef} css={circleStyle} />
-      </svg>
+      <div>
+        <svg width={width} height={height}>
+          <g id="links" ref={linkRef} css={lineStyle} />
+          <g id="nodes" ref={nodeRef} css={circleStyle({ visitedNodeIndex })} />
+        </svg>
+      </div>
     </Root>
   )
 }
